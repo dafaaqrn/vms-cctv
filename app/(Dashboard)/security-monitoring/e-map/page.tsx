@@ -25,8 +25,6 @@ import {
   RotateCcw,
 } from "lucide-react";
 
-
-
 /* ------------------------- Data Tree Kamera ------------------------- */
 
 interface TreeGroup {
