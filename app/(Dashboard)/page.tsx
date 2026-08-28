@@ -72,7 +72,7 @@ export default function DashboardPage() {
           <ul className="space-y-3">
             <li>
               <Link
-                href="/security-monitoring/vca-search"
+                href="/vca-search/passing-vehicle"
                 className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
               >
                 <CarFront className="h-4 w-4 text-blue-500" />
