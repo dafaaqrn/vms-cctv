@@ -1,67 +1,151 @@
-"use client";
-
+import Link from "next/link";
 import {
-  LayoutGrid,
-  Download,
-  Bell,
-  Menu,
-  ChevronDown,
-  type LucideIcon,
+  Video,
+  Map,
+  LayoutDashboard,
+  ScanSearch,
+  CarFront,
+  ShieldAlert,
+  Car,
+  Gavel,
+  CarTaxiFront,
+  Signpost,
+  Wrench,
 } from "lucide-react";
-import SecurityMonitoring from "@/components/dashboard/security-monitoring/page";
-import VcaSearch from "@/components/dashboard/vca-search/page";
-import Arming from "@/components/dashboard/arming/page";
-import Enforcement from "@/components/dashboard/enforcement/page";
-import TrafficOrderManagement from "@/components/dashboard/traffic-order-management/page";
-import DeviceMaintenance from "./device-maintenance/page";
 
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      {/* Header */}
-      <header className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-3 text-white shadow-sm">
-        <div className="flex items-center gap-4">
-          <button className="rounded p-1 hover:bg-white/10" aria-label="Menu grid">
-            <LayoutGrid className="h-4 w-4" />
-          </button>
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15">
-              <span className="text-sm font-bold">C</span>
+      <div className="grid grid-cols-1 gap-5 p-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Security Monitoring */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-sky-500 text-white">
+              <Video className="h-4 w-4" />
             </div>
-            <span className="text-[15px] font-semibold tracking-wide">
-              Dashboard Master Lite
-            </span>
+            <h2 className="text-[15px] font-semibold text-slate-700">Security Monitoring</h2>
           </div>
+
+          <ul className="space-y-3">
+            <li>
+              <Link
+                href="components/dashboard/security-monitoring/VideoSecurity"
+                className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
+              >
+                <Video className="h-4 w-4 text-blue-500" />
+                Video Security
+              </Link>
+            </li>
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <Map className="h-4 w-4 text-blue-500" />
+                E-Map
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <LayoutDashboard className="h-4 w-4 text-blue-500" />
+                Real-Time Dashboard
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button className="rounded p-1 hover:bg-white/10" aria-label="Download">
-            <Download className="h-4 w-4" />
-          </button>
-          <button className="rounded p-1 hover:bg-white/10" aria-label="Notifications">
-            <Bell className="h-4 w-4" />
-          </button>
-          <button className="rounded p-1 hover:bg-white/10" aria-label="Menu">
-            <Menu className="h-4 w-4" />
-          </button>
-          <div className="flex items-center gap-1 text-sm">
-            <span>admin</span>
-            <ChevronDown className="h-3.5 w-3.5" />
+        {/* VCA Search */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-amber-500 text-white">
+              <ScanSearch className="h-4 w-4" />
+            </div>
+            <h2 className="text-[15px] font-semibold text-slate-700">VCA Search</h2>
           </div>
+
+          <ul className="space-y-3">
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <CarFront className="h-4 w-4 text-blue-500" />
+                Passing Vehicle Search
+              </a>
+            </li>
+          </ul>
         </div>
-      </header>
 
-      {/* Grid Content */}
-      <main className="grid grid-cols-1 gap-5 p-6 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Card yang sudah jadi komponen sendiri */}
-        <SecurityMonitoring />
-        <VcaSearch />
-        <Arming />
-        <Enforcement />
-        <TrafficOrderManagement />
-        <DeviceMaintenance />
+        {/* Arming */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-orange-500 text-white">
+              <ShieldAlert className="h-4 w-4" />
+            </div>
+            <h2 className="text-[15px] font-semibold text-slate-700">Arming</h2>
+          </div>
 
-      </main>
+          <ul className="space-y-3">
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <Car className="h-4 w-4 text-blue-500" />
+                Vehicle Arming
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Enforcement */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-rose-500 text-white">
+              <Gavel className="h-4 w-4" />
+            </div>
+            <h2 className="text-[15px] font-semibold text-slate-700">Enforcement</h2>
+          </div>
+
+          <ul className="space-y-3">
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <CarTaxiFront className="h-4 w-4 text-blue-500" />
+                Vehicle Violation
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Traffic Order Management */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-purple-500 text-white">
+              <Signpost className="h-4 w-4" />
+            </div>
+            <h2 className="text-[15px] font-semibold text-slate-700">Traffic Order Management</h2>
+          </div>
+
+          <ul className="space-y-3">
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <LayoutDashboard className="h-4 w-4 text-blue-500" />
+                Traffic Order Dashboard
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Device Maintenance */}
+        <div className="rounded-lg border border-slate-200/70 bg-white/60 p-5 shadow-sm backdrop-blur-sm transition hover:shadow-md">
+          <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-gray-500 text-white">
+              <Wrench className="h-4 w-4" />
+            </div>
+            <h2 className="text-[15px] font-semibold text-slate-700">Device Maintenance</h2>
+          </div>
+
+          <ul className="space-y-3">
+            <li>
+              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+                <Video className="h-4 w-4 text-blue-500" />
+                Video Device
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
-} 
+}
