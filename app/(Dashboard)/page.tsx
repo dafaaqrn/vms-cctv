@@ -93,10 +93,13 @@ export default function DashboardPage() {
 
           <ul className="space-y-3">
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link
+                href="/arming/vehicle-arming"
+                className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
+              >
                 <Car className="h-4 w-4 text-blue-500" />
                 Vehicle Arming
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
