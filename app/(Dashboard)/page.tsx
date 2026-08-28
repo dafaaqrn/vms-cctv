@@ -115,10 +115,11 @@ export default function DashboardPage() {
 
           <ul className="space-y-3">
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link href="/enforcement/vehicle-violation" 
+              className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
                 <CarTaxiFront className="h-4 w-4 text-blue-500" />
                 Vehicle Violation
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -134,10 +135,10 @@ export default function DashboardPage() {
 
           <ul className="space-y-3">
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
                 <LayoutDashboard className="h-4 w-4 text-blue-500" />
                 Traffic Order Dashboard
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
