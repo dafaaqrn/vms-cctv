@@ -21,6 +21,8 @@ import {
   PlayCircle,
 } from "lucide-react";
 
+/* ------------------------- Data Tree Kamera ------------------------- */
+
 interface TreeCamera {
   id: string;
   label: string;
@@ -63,6 +65,8 @@ const treeData: TreeGroup[] = [
     ],
   },
 ];
+
+/* ------------------------- Resource Sidebar ------------------------- */
 
 function CameraRow({ camera }: { camera: TreeCamera }) {
   return (
@@ -167,6 +171,8 @@ function ResourceSidebar() {
   );
 }
 
+/* ------------------------------ Viewer ------------------------------ */
+
 function Viewer() {
   const [mode, setMode] = useState<"live" | "playback">("live");
 
@@ -221,7 +227,9 @@ function Viewer() {
   );
 }
 
-export default function VideoSecurityPage() {
+/* -------------------------- Export Utama -------------------------- */
+
+export default function VideoSecurity() {
   return (
     <div className="flex h-full min-h-0">
       <ResourceSidebar />
