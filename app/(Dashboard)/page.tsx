@@ -40,16 +40,22 @@ export default function DashboardPage() {
               </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link
+                href="/security-monitoring/e-map"
+                className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
+              >
                 <Map className="h-4 w-4 text-blue-500" />
                 E-Map
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link
+                href="/security-monitoring/real-time-dashboard"
+                className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
+              >
                 <LayoutDashboard className="h-4 w-4 text-blue-500" />
                 Real-Time Dashboard
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,10 +71,13 @@ export default function DashboardPage() {
 
           <ul className="space-y-3">
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link
+                href="/security-monitoring/vca-search"
+                className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600"
+              >
                 <CarFront className="h-4 w-4 text-blue-500" />
                 Passing Vehicle Search
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

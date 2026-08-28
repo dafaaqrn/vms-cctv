@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ sidebarOpen, onToggleSidebar }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-3 text-white shadow-sm">
+    <header className="flex items-center justify-between bg-gradient-to-r from-[#B01F26] via-[#E6262E] to-[#FF5C5C] px-4 py-3 text-white shadow-md">
       <div className="flex items-center gap-4">
         <button
           onClick={onToggleSidebar}
