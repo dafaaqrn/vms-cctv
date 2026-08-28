@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { MapPoint } from "./LeafletMap";
+export type { MapPoint } from "./LeafletMap";
 
 // dynamic import wajib: Leaflet gagal render kalau kena SSR
 const LeafletMap = dynamic(() => import("./LeafletMap"), {

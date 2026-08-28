@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import MapWrapper, {type MapPoint} from "@/components/shared/MapWrapper";
 import {
   Building2,
   Tag,
@@ -34,6 +35,25 @@ interface TreeGroup {
   count: string;
   children?: TreeGroup[];
 }
+
+const mapPoints: MapPoint[] = [
+  {
+    id: "m2",
+    name: "Putaran masuk perum pemda",
+    lat: -1.239389,
+    lng: 116.870806,
+    popupContent: (
+      <div className="text-xs">
+        <p className="font-semibold">Putaran masuk perum pemda</p>
+        <p>Organization: Kota Balikpapan/Dishub Balikpapan</p>
+        <p>Lane Quantity: 2</p>
+      </div>
+    ),
+  },
+  { id: "m3", name: "Jalan Sungai Ampal", lat: -1.256, lng: 116.821 },
+  // ...titik lainnya, ganti top/left persen jadi lat/lng asli
+];
+
 
 const treeData: TreeGroup[] = [
   {
@@ -305,49 +325,14 @@ function MarkerPopup({ marker, onClose }: { marker: MapMarkerData; onClose: () =
 }
 
 function MapCanvas() {
-  const [activeId, setActiveId] = useState<string | null>("m2");
-  const activeMarker = markers.find((m) => m.id === activeId) ?? null;
+  const [activePoint, setActivePoint] = useState<MapPoint | null>(null);
 
   return (
-    <div className="relative flex-1 overflow-hidden bg-[#e8e4d8]">
-      {/* Mock peta — ganti dengan Leaflet/Google Maps di sini */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 30% 70%, #dcd6c2 0%, transparent 40%), radial-gradient(circle at 75% 20%, #cfe3d8 0%, transparent 35%)",
-        }}
+    <div className="relative flex-1 overflow-hidden">
+      <MapWrapper
+        points={mapPoints}
+        onMarkerClick={(point) => setActivePoint(point)}
       />
-      <svg className="absolute inset-0 h-full w-full opacity-40" preserveAspectRatio="none">
-        <line x1="40%" y1="0%" x2="55%" y2="100%" stroke="#f5a623" strokeWidth="3" />
-        <line x1="0%" y1="55%" x2="100%" y2="45%" stroke="#f5c542" strokeWidth="2" />
-      </svg>
-
-      {markers.map((m) => (
-        <MapMarker key={m.id} marker={m} active={activeId === m.id} onClick={() => setActiveId(m.id === activeId ? null : m.id)} />
-      ))}
-
-      {activeMarker && <MarkerPopup marker={activeMarker} onClose={() => setActiveId(null)} />}
-
-      {/* Kontrol kanan bawah */}
-      <div className="absolute bottom-6 right-6 flex flex-col overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
-        <button className="p-2 text-slate-500 hover:bg-slate-50" aria-label="Zoom in">
-          <Plus className="h-4 w-4" />
-        </button>
-        <button className="border-t border-slate-100 p-2 text-slate-500 hover:bg-slate-50" aria-label="Zoom out">
-          <Minus className="h-4 w-4" />
-        </button>
-      </div>
-
-      {/* Skala kiri bawah */}
-      <div className="absolute bottom-4 left-4 rounded bg-white/80 px-2 py-1 text-[10px] text-slate-500 shadow-sm">
-        477.62 m
-      </div>
-
-      {/* Panel utilitas kanan atas */}
-      <div className="absolute right-6 top-6 rounded-md bg-white p-2 shadow-sm">
-        <MapPin className="h-5 w-5 text-amber-500" />
-      </div>
     </div>
   );
 }
