@@ -9,9 +9,9 @@ import {
   ChevronRight,
   ChevronDown,
 } from "lucide-react";
-import { DonutChart, ChartLegend } from "@/components/shared/DonutChart";
-import { AreaTrendChart } from "@/components/shared/AreaTrendChart";
-import { MultiLineChart } from "@/components/shared/MultiLineChart";
+import { DonutChart, ChartLegend } from "@/app/components/shared/DonutChart";
+import { AreaTrendChart } from "@/app/components/shared/AreaTrendChart";
+import { MultiLineChart } from "@/app/components/shared/MultiLineChart";
 
 /* ------------------------------ Sidebar ------------------------------ */
 
