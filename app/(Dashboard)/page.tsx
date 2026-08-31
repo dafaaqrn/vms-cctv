@@ -14,6 +14,7 @@ import {
   FaceAngryIcon,
   ScanFace,
   ScanFaceIcon,
+  HardDrive,
 } from "lucide-react";
 
 export default function DashboardPage() {
@@ -154,10 +155,11 @@ export default function DashboardPage() {
 
           <ul className="space-y-3">
             <li>
-              <a href="#" className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
+              <Link href="/device-maintenance/video-device" 
+              className="flex items-center gap-2 text-sm text-slate-600 transition hover:text-blue-600">
                 <Video className="h-4 w-4 text-blue-500" />
                 Video Device
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
