@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import MapWrapper, {type MapPoint} from "@/components/shared/MapWrapper";
+import MapWrapper, {type MapPoint} from "@/app/components/shared/MapWrapper";
 import {
   Building2,
   Tag,
