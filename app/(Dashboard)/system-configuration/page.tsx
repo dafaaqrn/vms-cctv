@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Building2, Video } from "lucide-react";
 import ListSidebar, { type ListSidebarItem } from "@/app/components/shared/ListSidebar";
-import DepartmentManagement from "@/app/(Dashboard)/system-configuration/DepartmentManagement";
-import CameraManagement from "@/app/(Dashboard)/system-configuration/CameraManagement";
+import DepartmentManagement from "./DepartmentManagement";
+import CameraManagement from "./CameraManagement";
 
 type ConfigKey = "department" | "camera";
 
@@ -24,7 +24,7 @@ export default function SystemConfigurationPage() {
         onSelect={setActive}
         title="System Configuration"
       />
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 overflow-auto bg-slate-50 p-6">
         {active === "department" ? <DepartmentManagement /> : <CameraManagement />}
       </div>
     </div>
