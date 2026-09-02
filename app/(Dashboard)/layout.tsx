@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Navbar from "./layout/horizontal/navbar";
-import Sidebar, { type SidebarKey } from "./layout/vertical/sidebar";
+import Sidebar, { mainNavItems, type SidebarKey } from "./layout/vertical/sidebar";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,7 +15,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
       />
       <div className="flex flex-1">
-        <Sidebar open={sidebarOpen} active={active} onSelect={setActive} />
+        <Sidebar
+          open={sidebarOpen}
+          active={active}
+          items={mainNavItems}
+          onSelect={setActive}
+        />
         <main className="min-w-0 flex-1">{children}</main>
       </div>
     </div>
