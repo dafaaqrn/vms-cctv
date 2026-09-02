@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Building2, Video } from "lucide-react";
 import ListSidebar, { type ListSidebarItem } from "@/app/components/shared/ListSidebar";
-import DepartmentManagement from "@/app/(Dashboard)/device-maintenance/system-configuration//DepartmentManagement";
-import CameraManagement from "@/app/(Dashboard)/device-maintenance/system-configuration/CameraManagement";
+import DepartmentManagement from "@/app/(Dashboard)/system-configuration/DepartmentManagement";
+import CameraManagement from "@/app/(Dashboard)/system-configuration/CameraManagement";
 
 type ConfigKey = "department" | "camera";
 
