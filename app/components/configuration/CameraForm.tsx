@@ -20,12 +20,13 @@ interface CameraFormProps {
 }
 
 const cameraTypes = ["HIK Vision", "Dahua"];
+const channelCount = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024];
 
 const emptyValues: CameraFormValues = {
   name: "",
   ipAddress: "",
-  cameraType: cameraTypes[0],
-  channelCount: 1,
+  cameraType: "",
+  channelCount: 0,
   username: "",
   password: "",
 };
@@ -83,15 +84,14 @@ export default function CameraForm({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Jumlah Channel</label>
-          <input
-            type="number"
-            min={1}
-            value={values.channelCount}
-            onChange={(e) => handleChange("channelCount", Number(e.target.value))}
-            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          />
-        </div>
+  <label className="mb-1 block text-sm font-medium text-slate-700">Jumlah Channel</label>
+  <Dropdown
+    options={channelCount.map((c) => ({ value: String(c), label: String(c) }))}
+    value={String(values.channelCount)}
+    onChange={(val) => handleChange("channelCount", Number(val))}
+    placeholder="Pilih jumlah channel"
+  />
+</div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
