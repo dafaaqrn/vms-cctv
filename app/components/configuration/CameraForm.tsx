@@ -1,5 +1,6 @@
 "use client";
 
+import Dropdown from "@/components/shared/Dropdown";
 import { useState } from "react";
 
 export interface CameraFormValues {
@@ -18,7 +19,7 @@ interface CameraFormProps {
   onCancel?: () => void;
 }
 
-const cameraTypes = ["Dome", "Bullet", "PTZ", "Fisheye", "Box"];
+const cameraTypes = ["HIK Vision", "Dahua"];
 
 const emptyValues: CameraFormValues = {
   name: "",
@@ -62,35 +63,23 @@ export default function CameraForm({
 
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Alamat IP</label>
-        <select
-          value={values.ipAddress}
-          onChange={(e) => handleChange("ipAddress", e.target.value)}
-          required
-          className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-        >
-          <option value="">Pilih alamat IP</option>
-          {ipOptions.map((ip) => (
-            <option key={ip} value={ip}>
-              {ip}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+  options={ipOptions.map((ip) => ({ value: ip, label: ip }))}
+  value={values.ipAddress}
+  onChange={(val) => handleChange("ipAddress", val)}
+  placeholder="Pilih alamat IP"
+/>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="mb-1 block text-sm font-medium text-slate-700">Jenis CCTV</label>
-          <select
+          <Dropdown
+            options={cameraTypes.map((type) => ({ value: type, label: type }))}
             value={values.cameraType}
-            onChange={(e) => handleChange("cameraType", e.target.value)}
-            className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          >
-            {cameraTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
+            onChange={(val) => handleChange("cameraType", val)}
+            placeholder="Pilih jenis CCTV"
+          />
         </div>
 
         <div>

@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 const menuItems = [
-  { label: "System Configuration", icon: Settings, href: "/device-maintenance/system-configuration" },
+  { label: "System Configuration", icon: Settings, href: "/system-configuration" },
   { label: "About", icon: Info, href: "/about" },
   { label: "Help Center", icon: HelpCircle, href: "/help-center" },
 ];
