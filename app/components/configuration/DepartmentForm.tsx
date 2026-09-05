@@ -1,31 +1,20 @@
 "use client";
 
-import { useState } from "react";
-
-export interface DepartmentFormValues {
-  id: string;
-  name: string;
-  description: string;
-  parentId: string;
-}
-
-interface DepartmentOption {
-  id: string;
-  name: string;
-}
+import { useEffect, useState } from "react";
+import type { Department, DepartmentInput } from "@/lib/department";
 
 interface DepartmentFormProps {
-  parentOptions: DepartmentOption[];
-  initialValues?: DepartmentFormValues;
-  onSubmit: (values: DepartmentFormValues) => void;
+  parentOptions: Department[];
+  initialValues?: Department;
+  onSubmit: (values: DepartmentInput) => void;
   onCancel?: () => void;
+  submitting?: boolean;
 }
 
-const emptyValues: DepartmentFormValues = {
-  id: "",
+const emptyValues: DepartmentInput = {
   name: "",
   description: "",
-  parentId: "",
+  parentId: null,
 };
 
 export default function DepartmentForm({
@@ -33,10 +22,21 @@ export default function DepartmentForm({
   initialValues,
   onSubmit,
   onCancel,
+  submitting,
 }: DepartmentFormProps) {
-  const [values, setValues] = useState<DepartmentFormValues>(initialValues ?? emptyValues);
+  const [values, setValues] = useState<DepartmentInput>(toInput(initialValues));
 
-  function handleChange<K extends keyof DepartmentFormValues>(key: K, value: DepartmentFormValues[K]) {
+  // keep the form in sync if the parent switches which department we're editing
+  useEffect(() => {
+    setValues(toInput(initialValues));
+  }, [initialValues]);
+
+  function toInput(dept?: Department): DepartmentInput {
+    if (!dept) return emptyValues;
+    return { name: dept.name, description: dept.description, parentId: dept.parentId };
+  }
+
+  function handleChange<K extends keyof DepartmentInput>(key: K, value: DepartmentInput[K]) {
     setValues((prev) => ({ ...prev, [key]: value }));
   }
 
@@ -45,20 +45,11 @@ export default function DepartmentForm({
     onSubmit(values);
   }
 
+  // a department can't be its own parent — filter itself out of the dropdown when editing
+  const selectableParents = parentOptions.filter((d) => d.id !== initialValues?.id);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">ID Departemen</label>
-        <input
-          type="text"
-          value={values.id}
-          onChange={(e) => handleChange("id", e.target.value)}
-          placeholder="Contoh: DISHUB-001"
-          required
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-        />
-      </div>
-
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Nama Departemen</label>
         <input
@@ -85,12 +76,14 @@ export default function DepartmentForm({
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Parent Departemen</label>
         <select
-          value={values.parentId}
-          onChange={(e) => handleChange("parentId", e.target.value)}
+          value={values.parentId ?? ""}
+          onChange={(e) =>
+            handleChange("parentId", e.target.value === "" ? null : Number(e.target.value))
+          }
           className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
           <option value="">Tidak ada (Root)</option>
-          {parentOptions.map((opt) => (
+          {selectableParents.map((opt) => (
             <option key={opt.id} value={opt.id}>
               {opt.name}
             </option>
@@ -110,9 +103,10 @@ export default function DepartmentForm({
         )}
         <button
           type="submit"
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          disabled={submitting}
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60"
         >
-          Simpan
+          {submitting ? "Menyimpan..." : "Simpan"}
         </button>
       </div>
     </form>
