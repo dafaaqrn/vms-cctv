@@ -1,14 +1,14 @@
 export type Department = {
-  id: number;
+  id: string;
   name: string;
   description: string;
-  parentId: number | null;
+  parentId: string | null;
 };
 
 export type DepartmentInput = {
   name: string;
   description: string;
-  parentId: number | null;
+  parentId: string | null;
 };
 
 // Base URL of the Go backend. Set NEXT_PUBLIC_API_URL in .env.local if it
@@ -44,7 +44,7 @@ export async function createDepartment(input: DepartmentInput): Promise<Departme
   return handleResponse<Department>(res);
 }
 
-export async function updateDepartment(id: number, input: DepartmentInput): Promise<Department> {
+export async function updateDepartment(id: string, input: DepartmentInput): Promise<Department> {
   const res = await fetch(`${API_URL}/api/departments/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -53,7 +53,7 @@ export async function updateDepartment(id: number, input: DepartmentInput): Prom
   return handleResponse<Department>(res);
 }
 
-export async function deleteDepartment(id: number): Promise<void> {
+export async function deleteDepartment(id: string): Promise<void> {
   const res = await fetch(`${API_URL}/api/departments/${id}`, { method: "DELETE" });
   return handleResponse<void>(res);
 }

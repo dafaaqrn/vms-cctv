@@ -9,7 +9,7 @@ import {
   createDepartment,
   updateDepartment,
   deleteDepartment,
-} from "@/lib/department";
+} from "@/lib/departments";
 
 type ViewMode = { mode: "list" } | { mode: "create" } | { mode: "edit"; department: Department };
 
@@ -37,7 +37,7 @@ export default function DepartmentManagement() {
     refresh();
   }, []);
 
-  function parentName(parentId: number | null) {
+  function parentName(parentId: string | null) {
     if (parentId === null) return "-";
     return departments.find((d) => d.id === parentId)?.name ?? `#${parentId}`;
   }

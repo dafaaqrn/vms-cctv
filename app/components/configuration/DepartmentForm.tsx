@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Department, DepartmentInput } from "@/lib/department";
+import type { Department, DepartmentInput } from "@/lib/departments";
 
 interface DepartmentFormProps {
   parentOptions: Department[];
@@ -50,6 +50,18 @@ export default function DepartmentForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {initialValues && (
+        <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">ID Departemen</label>
+          <input
+            type="text"
+            value={initialValues.id}
+            disabled
+            readOnly
+            className="w-full rounded-md border border-slate-200 bg-slate-100 px-3 py-2 text-sm text-slate-500 cursor-not-allowed"
+          />
+        </div>
+      )}
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Nama Departemen</label>
         <input
@@ -78,7 +90,7 @@ export default function DepartmentForm({
         <select
           value={values.parentId ?? ""}
           onChange={(e) =>
-            handleChange("parentId", e.target.value === "" ? null : Number(e.target.value))
+            handleChange("parentId", e.target.value === "" ? null : e.target.value)
           }
           className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
