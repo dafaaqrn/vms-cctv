@@ -64,12 +64,15 @@ export default function CameraForm({
 
       <div>
         <label className="mb-1 block text-sm font-medium text-slate-700">Alamat IP</label>
-        <Dropdown
-  options={ipOptions.map((ip) => ({ value: ip, label: ip }))}
-  value={values.ipAddress}
-  onChange={(val) => handleChange("ipAddress", val)}
-  placeholder="Pilih alamat IP"
-/>
+        <input
+          type="text"
+          value={values.ipAddress}
+          onChange={(e) => handleChange("ipAddress", e.target.value)}
+          placeholder="Contoh: 192.168.1.100"
+          required
+          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-800 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        />
+      
       </div>
 
       <div className="grid grid-cols-2 gap-4">
